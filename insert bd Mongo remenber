@@ -7,3 +7,14 @@ db.wands.insert({
   "damage":{magic:4,melee:2}
   
 })
+
+
+Agregatiosn 
+
+db.wands.aggregate([
+  {"$group": {"_id": "$maker", 
+              "total_wands": {"$sum": 1}, 
+              "max_magic": {"$max": "$damage.magic"},
+             "lowest_price": {"$min": "$price"}
+             }}
+])
